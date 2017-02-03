@@ -456,4 +456,20 @@ public interface ExoPlayer {
    * @param speed the speed factor: speed_of_playback / speed_of_real_clock
    */
   void setPlaybackSpeed(float speed);
+
+  /**
+   * Returns whether the current window is dynamic, or {@code false} if the {@link Timeline} is
+   * empty.
+   *
+   * @see Timeline.Window#isDynamic
+   */
+  boolean isCurrentWindowDynamic();
+
+  /**
+   * Returns whether the current window is seekable, or {@code false} if the {@link Timeline} is
+   * empty.
+   *
+   * @see Timeline.Window#isSeekable
+   */
+  boolean isCurrentWindowSeekable();
 }

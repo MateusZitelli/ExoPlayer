@@ -23,7 +23,6 @@ import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.RendererCapabilities;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.drm.StreamingDrmSessionManager;
 import com.google.android.exoplayer2.metadata.Metadata;
 import com.google.android.exoplayer2.metadata.MetadataRenderer;
 import com.google.android.exoplayer2.source.AdaptiveMediaSourceEventListener;
@@ -42,7 +41,7 @@ import java.util.Locale;
  * Logs player events using {@link Log}.
  */
 /* package */ final class EventLogger implements ExoPlayer.EventListener, AdaptiveMediaSourceEventListener,
-    ExtractorMediaSource.EventListener, StreamingDrmSessionManager.EventListener, MetadataRenderer.Output {
+    ExtractorMediaSource.EventListener, MetadataRenderer.Output {
 
   private static final String TAG = "EventLogger";
   private static final NumberFormat TIME_FORMAT;
@@ -89,16 +88,6 @@ import java.util.Locale;
   @Override
   public void onPositionDiscontinuity() {
 
-  }
-
-  @Override
-  public void onDrmSessionManagerError(Exception e) {
-    printInternalError("drmSessionManagerError", e);
-  }
-
-  @Override
-  public void onDrmKeysLoaded() {
-    Log.d(TAG, "drmKeysLoaded [" + getSessionTimeString() + "]");
   }
 
   // ExtractorMediaSource.EventListener
