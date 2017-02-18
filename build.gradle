@@ -28,6 +28,10 @@ allprojects {
     repositories {
         jcenter()
     }
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+    }
     project.ext {
         compileSdkVersion=24
         targetSdkVersion=24
