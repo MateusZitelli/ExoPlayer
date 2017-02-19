@@ -433,29 +433,23 @@ import java.io.IOException;
     if (periodPositionUs != C.TIME_UNSET) {
       resetRendererPosition(periodPositionUs);
     } else {
-      //if (rendererMediaClockSource != null && !rendererMediaClockSource.isEnded()) {
+      if (rendererMediaClockSource != null && !rendererMediaClockSource.isEnded()) {
         rendererPositionUs = rendererMediaClock.getPositionUs();
         standaloneMediaClock.setPositionUs(rendererPositionUs);
-      //} else {
-      //  rendererPositionUs = standaloneMediaClock.getPositionUs();
-      //}
-      periodPositionUs = rendererPositionUs - playingPeriodHolder.rendererPositionOffsetUs;
-/*=======
       } else {
         rendererPositionUs = standaloneMediaClock.getPositionUs();
       }
       periodPositionUs = playingPeriodHolder.toPeriodTime(rendererPositionUs);
->>>>>>> origin/release-v2*/
     }
     playbackInfo.positionUs = periodPositionUs;
     elapsedRealtimeUs = SystemClock.elapsedRealtime() * 1000;
 
     // Update the buffered position.
     long bufferedPositionUs = enabledRenderers.length == 0 ? C.TIME_END_OF_SOURCE
-        : playingPeriodHolder.mediaPeriod.getBufferedPositionUs();
+      : playingPeriodHolder.mediaPeriod.getBufferedPositionUs();
     playbackInfo.bufferedPositionUs = bufferedPositionUs == C.TIME_END_OF_SOURCE
-        ? timeline.getPeriod(playingPeriodHolder.index, period).getDurationUs()
-        : bufferedPositionUs;
+      ? timeline.getPeriod(playingPeriodHolder.index, period).getDurationUs()
+      : bufferedPositionUs;
   }
 
   private void doSomeWork() throws ExoPlaybackException, IOException {
